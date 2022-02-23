@@ -8,6 +8,7 @@
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

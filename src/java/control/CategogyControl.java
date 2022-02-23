@@ -6,12 +6,12 @@
 package control;
 
 import dao.DAO;
-import entity.Category;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author msi
  */
-public class HomeControl extends HttpServlet {
+@WebServlet(name = "CategogyControl", urlPatterns = {"/category"})
+public class CategogyControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,19 +37,13 @@ public class HomeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-               // b1:get data from Dao
-               
-                DAO dao = new DAO();
-               List<Product> list = dao.getAllProduct();
-               List<Category> listp = dao.getAllCategory();
-               Product last = dao.getLast();
-               
-               //b2 set data to jsp
-               
-                request.setAttribute("listP", list);
-                request.setAttribute("ListC", listp);
-                request.setAttribute("p", last);
-                request.getRequestDispatcher("Home.jsp").forward(request, response);
+            String CateID =request.getParameter("ccid");
+            //lay id ve roi
+            DAO dao = new DAO();
+            List<Product> list = dao.getProductByCID(CateID);
+            
+            request.setAttribute("istP", list);
+            request.getRequestDispatcher("Home.jsp").forward(request, response);
         }
     }
 
