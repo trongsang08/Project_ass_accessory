@@ -6,6 +6,7 @@
 package control;
 
 import dao.DAO;
+import entity.Category;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,8 +42,14 @@ public class CategogyControl extends HttpServlet {
             //lay id ve roi
             DAO dao = new DAO();
             List<Product> list = dao.getProductByCID(CateID);
+            List<Category> listp = dao.getAllCategory();
+            Product last = dao.getLast();
             
-            request.setAttribute("istP", list);
+            
+            request.setAttribute("ListC", listp);
+            request.setAttribute("p", last);
+            request.setAttribute("listP", list);
+            
             request.getRequestDispatcher("Home.jsp").forward(request, response);
         }
     }
