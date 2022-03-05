@@ -13,12 +13,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <jsp:include page="Menu.jsp"></jsp:include>
-       
+        <jsp:include page="Menu.jsp"></jsp:include>      
         <div class="container">
             <div class="row">
             <jsp:include page="Left.jsp"></jsp:include>
-
                 <div class="col-sm-9">
                     <div class="row">
                         <c:forEach items="${listP}" var="o">
@@ -30,7 +28,7 @@
                                         <p class="card-text show_txt">${o.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${o.price} $</p>
+                                                <p class="btn btn-danger btn-block">${o.price} </p>
                                             </div>
                                             <div class="col">
                                                 <a href="#" class="btn btn-success btn-block">Add to cart</a>
