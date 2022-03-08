@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author msi
  */
-@WebServlet(name = "LoginControl", urlPatterns = {"/login"})
-public class LoginControl extends HttpServlet {
+@WebServlet(name = "AddControl", urlPatterns = {"/add"})
+public class AddControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,21 +37,21 @@ public class LoginControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String username = request.getParameter("user");
-            String password = request.getParameter("pass");
-            DAO dao =new DAO();
-            Account a =dao.login(username, password);
-            if(a == null){
-                request.setAttribute("mess", "Kiểm tra lại tên người dùng hoặc mật khẩu");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }else{
-              HttpSession seecsion = request.getSession();
-              seecsion.setAttribute("acc", a);
-              seecsion.setMaxInactiveInterval(100);
-              response.sendRedirect("home");
-            }
-            
-            
+            request.setCharacterEncoding("UTF-8");
+            String pname = request.getParameter("name");
+            String pimage = request.getParameter("image");
+            String pprice = request.getParameter("price");
+            String ptitle = request.getParameter("title");
+            String pdescription = request.getParameter("description");
+            String pcategory = request.getParameter("category");
+            HttpSession session = request.getSession();
+            Account a = (Account) session.getAttribute("acc");
+           int sid = a.getId();
+           
+           DAO dao = new DAO();
+           dao.insertpro(pname, pimage, pprice, ptitle, pdescription, pcategory, sid);
+           response.sendRedirect("manager");
+           
         }
     }
 
