@@ -16,6 +16,7 @@ public class Product {
     private double price;
     private String title;
     private String description;
+    private int amount;
 
     public Product() {
     }
@@ -27,6 +28,20 @@ public class Product {
         this.price = price;
         this.title = title;
         this.description = description;
+    }
+        public Product(int id, String name, String image, double price) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+    }
+
+    public Product(int id, String name, String image, double price, int amount) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -75,6 +90,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+     public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     @Override

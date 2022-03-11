@@ -57,11 +57,11 @@
                                                     </th>
                                                     <td class="align-middle"><strong>${o.price}</strong></td>
                                                     <td class="align-middle">
-                                                        <a href="#"><button class="btnSub">-</button></a> 
+                                                        <a href="sub?id=${o.id}"><button class="btnSub">-</button></a> 
                                                         <strong>${o.amount}</strong>
-                                                        <a href="#"><button class="btnAdd">+</button></a>
+                                                        <a href="cart?id=${o.id}"><button class="btnAdd">+</button></a>
                                                     </td>
-                                                    <td class="align-middle"><a href="#" class="text-dark">
+                                                    <td class="align-middle"><a href="remove?id=${o.id}" class="text-dark">
                                                             <button type="button" class="btn btn-danger">Delete</button>
                                                         </a>
                                                     </td>
@@ -90,13 +90,13 @@
                                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
                                 <div class="p-4">
                                     <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>100 $</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>${total}</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>10 $</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>${vat}</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
-                                            <h5 class="font-weight-bold">110 $</h5>
+                                            <h5 class="font-weight-bold">${sum} ₫</h5>
                                         </li>
-                                    </ul><a href="buy" class="btn btn-dark rounded-pill py-2 btn-block">Mua hàng</a>
+                                    </ul><a href="home" class="btn btn-dark rounded-pill py-2 btn-block">Mua hàng</a>
                                 </div>
                             </div>
                         </div>
