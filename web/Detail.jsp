@@ -57,6 +57,7 @@
                 <div class="col-sm-9">
                     <div class="container">
                         <div class="card">
+                        
                             <div class="row">
                                 <aside class="col-sm-5 border-right">
                                     <article class="gallery-wrap"> 
@@ -73,11 +74,11 @@
 
                                         <p class="price-detail-wrap"> 
                                             <span class="price h3 text-warning"> 
-                                                <span class="currency">US $</span><span class="num">${detail.price}</span>
+                                               <span class="num">${detail.price}</span> <span class="currency">  VNĐ</span>
                                             </span> 
                                         </p> <!-- price-detail-wrap .// -->
                                         <dl class="item-property">
-                                            <dt>Description</dt>
+                                            <dt>Chi tiết sản phẩm</dt>
                                             <dd><p>
                                                     ${detail.description}
                                                 </p></dd>
@@ -87,7 +88,7 @@
                                         <div class="row">
                                             <div class="col-sm-5">
                                                 <dl class="param param-inline">
-                                                    <dt>Quantity: </dt>
+                                                    <dt>Kích cỡ </dt>
                                                     <dd>
                                                         <select class="form-control form-control-sm" style="width:70px;">
                                                             <option> 1 </option>
@@ -100,8 +101,8 @@
 
                                         </div> <!-- row.// -->
                                         <hr>
-                                        <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-                                        <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                                        <a href="cart?id=${detail.id}" class="btn btn-lg btn-primary text-uppercase"> Mua ngay </a>
+                                        <a href="cart?id=${detail.id}" class="btn btn-lg btn-outline-primary text-uppercase"> Thêm  </a>
                                     </article> <!-- card-body.// -->
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->

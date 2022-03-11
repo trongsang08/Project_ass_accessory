@@ -30,7 +30,7 @@
                                         <p class="card-text show_txt">${o.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${o.price} $</p>
+                                                <p class="btn btn-danger btn-block">${o.price} VNĐ</p>
                                             </div>
                                             <div class="col">
                                                 <a href="cart?id=${o.id}" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
@@ -41,13 +41,14 @@
                             </div>
                         </c:forEach>
                     </div>
+                    
+                </div>
 
             </div>
         </div>
 
         <jsp:include page="Footer.jsp"></jsp:include>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-       
+         
     </body>
 </html>
 

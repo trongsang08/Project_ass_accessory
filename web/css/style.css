@@ -52,9 +52,8 @@
 .pagination {
     margin-top: 20px;
 }
-footer {
-    
-    background: orange;
+footer {    
+/*    background: orange;*/
     padding: 40px;
     margin-top: 20px;
 }
