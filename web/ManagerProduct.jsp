@@ -84,7 +84,7 @@
                 </table>
                 <div class="clearfix">
                     <div class="hint-text"><a href="home">Trở về</a></div>
-                    <ul class="pagination">
+<!--                    <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Trước</a></li>
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
                         <li class="page-item"><a href="#" class="page-link">2</a></li>
@@ -93,7 +93,7 @@
                         <li class="page-item"><a href="#" class="page-link">5</a></li>
                         <li class="page-item"><a href="#" class="page-link">Tiếp</a></li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </div>
         <!-- Edit Modal HTML -->

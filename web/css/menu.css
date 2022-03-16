@@ -10,7 +10,8 @@ and open the template in the editor.
 
 
 header{
-    background:#fa5330;
+/*    background:#fa5330;*/
+    background: white;
 }
 .header_menu{
     margin-left: 50%;
@@ -30,4 +31,6 @@ header{
 .header_cart{
     margin-right: 10px;
 }
-
+ li a .but{
+    list-style: none;
+}

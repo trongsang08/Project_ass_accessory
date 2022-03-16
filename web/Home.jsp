@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>TSG ACCESSORY</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -41,11 +41,22 @@
                             </div>
                         </c:forEach>
                     </div>
-                    
+                    <div class="clearfix">
+<!--                        <li class="page-item active"></li>-->
+<!--                        <div class="hint-text">Showing <b>4</b> out of <b>25</b> entries</div>-->
+                        <ul class="pagination">
+                            <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+                            <c:forEach begin="1" end="${endp}" var="i">
+                            <a href="paging?index=${i}" class="page-link">${i}</a>
+                            </c:forEach>
+                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    </ul>
                 </div>
-
+                </div>
+                    
             </div>
         </div>
+                
 
         <jsp:include page="Footer.jsp"></jsp:include>
          

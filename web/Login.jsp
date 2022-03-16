@@ -16,7 +16,7 @@
         <link href="css/login.css" rel="stylesheet" type="text/css"/>
         <title>Login Form</title>
     </head>
-    <body>
+    <body class="login">
         <div id="logreg-forms">
             <form class="form-signin" action="login" method="post">
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>

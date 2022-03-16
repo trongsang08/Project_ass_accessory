@@ -317,15 +317,62 @@ public class DAO {
         }
         return null;
     }
+        
+    public int totalpro() { // hàm đếm sô lượng tất cả sản phẩm có trong db
+        String query = "select COUNT(*) from product";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    
+    
+    public List<Product> pagingpro(int index) {
+        List<Product> list = new ArrayList<>();
+        String query = "select [id], [name], [image], [price], [title], [description], [cateID], [sell_ID] from (select ROW_NUMBER() over (order by ID) as rownum , [id], [name], [image], [price], [title], [description], [cateID], [sell_ID] from product) t\n"
+                + "where rownum >= ? and rownum <= ?;";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, (index - 1)*6 + 1 );
+            ps.setInt(2, index * 6);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getString(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+
+    }
 
     public static void main(String[] args) {
         DAO dao = new DAO();
-        List<Product> list = dao.getAllProduct();
-        List<Category> listp = dao.getAllCategory();
+//        List<Product> list = dao.getAllProduct();
+//        List<Category> listp = dao.getAllCategory();
+//
+//        for (Category o : listp) {
+//            System.out.println(o);
+//        }
 
-        for (Category o : listp) {
+//        int count = dao.totalpro();
+//        System.out.println(count);
+         List<Product> list = dao.pagingpro(3);
+         for (Product o : list) {
             System.out.println(o);
         }
+
     }
 
 }
