@@ -9,7 +9,7 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 #logreg-forms{
-   background-color:#fc6f6f; 
+   background-color:grey; 
 }
 #logreg-forms form {
     width: 100%;

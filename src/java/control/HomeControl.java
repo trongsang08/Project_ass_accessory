@@ -35,27 +35,19 @@ public class HomeControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DAO dao = new DAO();
+        
+        
         List<Product> list = dao.getAllProduct();
         List<Category> listp = dao.getAllCategory();
         Product last = dao.getLast();
-//        String indexPage = request.getParameter("index");
-//        if (indexPage == null) {
-//            indexPage = "1";
-//        }
-//        int index = Integer.getInteger(indexPage);
-//        
-//        
-////
+
         int count = dao.totalpro();
         int endpage = count / 6;
         if (count % 6 != 0) {
             endpage++;
             System.out.println(count);
         }
-       
-//
-
-    
+        
         request.setAttribute("endp", endpage);
         request.setAttribute("listP", list);      
         request.setAttribute("ListC", listp);

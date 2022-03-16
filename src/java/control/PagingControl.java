@@ -8,6 +8,7 @@ package control;
 import dao.DAO;
 import entity.Product;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,22 +35,21 @@ public class PagingControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        DAO dao = new DAO();
         String indexPage = request.getParameter("index");
-        if (indexPage == null) {
+        if (indexPage == null || indexPage.length() == 0) {
             indexPage = "1";
         }
         int index = Integer.getInteger(indexPage);
-        DAO dao = new DAO();
-        int count = dao.totalpro();
-        int endpage = count / 6;
-        if (count % 6 != 0) {
-            endpage++;
-        }
-
-        List<Product> list = dao.pagingpro(index);
+        
+        
+        List <Product> list = dao.pagingpro(index);
+        
         request.setAttribute("listP", list);
-        request.setAttribute("endp", endpage);
         request.getRequestDispatcher("Home.jsp").forward(request, response);
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

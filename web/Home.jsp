@@ -46,7 +46,7 @@
 <!--                        <div class="hint-text">Showing <b>4</b> out of <b>25</b> entries</div>-->
                         <ul class="pagination">
                             <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                            <c:forEach begin="1" end="${endp}" var="i">
+                        <c:forEach  begin="1" end="${endp}" var="i">
                             <a href="paging?index=${i}" class="page-link">${i}</a>
                             </c:forEach>
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
