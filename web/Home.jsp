@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +31,7 @@
                                         <p class="card-text show_txt">${o.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${o.price} VNĐ</p>
+                                                <p class="btn btn-danger btn-block" ><fmt:formatNumber type="number" maxFractionDigits="3" value="${o.price*1000}"></fmt:formatNumber> VNĐ</p>
                                             </div>
                                             <div class="col">
                                                 <a href="cart?id=${o.id}" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
@@ -47,7 +48,7 @@
                         <ul class="pagination">
                             <li class="page-item"><a href="#" class="page-link">Previous</a></li>
                         <c:forEach  begin="1" end="${endp}" var="i">
-                            <a href="paging?index=${i}" class="page-link">${i}</a>
+                            <a href="home?index=${i}" class="page-link">${i}</a>
                             </c:forEach>
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                     </ul>

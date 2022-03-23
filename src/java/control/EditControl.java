@@ -36,17 +36,21 @@ public class EditControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
         String pid = request.getParameter("id");
         String pname = request.getParameter("name");
         String pimage = request.getParameter("image");
         String pprice = request.getParameter("price");
+         String suplier = request.getParameter("suplier");
         String ptitle = request.getParameter("title");
         String pdescription = request.getParameter("description");
         String pcategory = request.getParameter("category");
+       
         
         
         DAO dao = new DAO();
-        dao.eidtpro(pname, pimage, pprice, ptitle, pdescription, pcategory, pid);
+        response.getWriter().print(suplier);
+        dao.eidtpro(pname, pimage, pprice, ptitle, pdescription, pcategory, suplier, pid);
         response.sendRedirect("manager");
     }
 

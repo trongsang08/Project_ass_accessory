@@ -35,12 +35,17 @@ public class HomeControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DAO dao = new DAO();
-        
-        
         List<Product> list = dao.getAllProduct();
         List<Category> listp = dao.getAllCategory();
         Product last = dao.getLast();
-
+        //phan trang
+        
+        String indexPage = request.getParameter("index");
+        if (indexPage == null) {
+            indexPage = "1";
+        }
+        int index = Integer.parseInt(indexPage);
+        //chia so trang
         int count = dao.totalpro();
         int endpage = count / 6;
         if (count % 6 != 0) {
@@ -48,8 +53,13 @@ public class HomeControl extends HttpServlet {
             System.out.println(count);
         }
         
+        List <Product> lista = dao.pagingpro(index);        
+              
         request.setAttribute("endp", endpage);
-        request.setAttribute("listP", list);      
+        request.setAttribute("listP", list);
+        
+        
+        request.setAttribute("listP", lista);
         request.setAttribute("ListC", listp);
         request.setAttribute("p", last);
         request.getRequestDispatcher("Home.jsp").forward(request, response);

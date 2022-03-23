@@ -39,20 +39,40 @@ public class ManagerControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */          
+            /* TODO output your page here. You may use following sample code. */ 
+           
             HttpSession session = request.getSession();
             Account a = (Account) session.getAttribute("acc");
             int id = a.getId();
             DAO dao = new DAO();
-            List<Product> list = dao.getProductBysellID(id);
+//            List<Product> list = dao.getProductBysellID(id);
             List<Category> listp = dao.getAllCategory();
             
             
-            request.setAttribute("listP", list);
+            //phan trang
+             String indexPage = request.getParameter("idex");
+            if (indexPage == null) {
+                indexPage = "1";
+            }         
+            int idex = Integer.parseInt(indexPage);
+            //chia so trang
+            int count = dao.totalprosellid();
+            int endpage = count / 4;
+            if (count % 4 != 0) {
+                endpage++;
+                System.out.println(count);
+            }
+            
+            List<Product> lista = dao.pagingmanager(idex);  
+            
+            request.setAttribute("end", endpage);
+            request.setAttribute("listP", lista);
+            
+            
+//            request.setAttribute("listP", list);
             request.setAttribute("Listp", listp);
             request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
-                  
-            
+
         }
     }
 

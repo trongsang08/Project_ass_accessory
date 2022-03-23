@@ -38,20 +38,21 @@ public class AddControl extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             request.setCharacterEncoding("UTF-8");
-            String pname = request.getParameter("name");
-            String pimage = request.getParameter("image");
-            String pprice = request.getParameter("price");
-            String ptitle = request.getParameter("title");
-            String pdescription = request.getParameter("description");
-            String pcategory = request.getParameter("category");
-            HttpSession session = request.getSession();
-            Account a = (Account) session.getAttribute("acc");
-           int sid = a.getId();
-           
-           DAO dao = new DAO();
-           dao.insertpro(pname, pimage, pprice, ptitle, pdescription, pcategory, sid);
-           response.sendRedirect("manager");
-           
+        String pname = request.getParameter("name");
+        String pimage = request.getParameter("image");
+        String pprice = request.getParameter("price");
+        String ptitle = request.getParameter("title");
+        String pdescription = request.getParameter("description");
+        String pcategory = request.getParameter("category");
+        String suplier = request.getParameter("suplier");
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        int sid = a.getId();
+        
+        
+        DAO dao = new DAO();
+        dao.insertProduct(pname, pimage, pprice, ptitle, pdescription, pcategory, sid,suplier);
+        response.sendRedirect("manager");
         }
     }
 

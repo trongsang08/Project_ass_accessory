@@ -64,6 +64,15 @@
                                     <label>Giá</label>
                                     <input value="${detail.price}" name="price" type="text" class="form-control" required>
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label>suplier</label>
+                                    <input value="${detail.suplier}" name="suplier" type="text" class="form-control" required>
+                                </div>
+<!--                                <div class="form-group">
+                                    <label>suplier</label>
+                                    <textarea name="suplier" class="form-control" required></textarea>
+                                </div>-->
                                 <div class="form-group">
                                     <label>Tiêu đề</label>
                                     <textarea name="title" class="form-control" required>${detail.title}</textarea>

@@ -35,18 +35,22 @@ public class PagingControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DAO dao = new DAO();
-        String indexPage = request.getParameter("index");
-        if (indexPage == null || indexPage.length() == 0) {
-            indexPage = "1";
-        }
-        int index = Integer.getInteger(indexPage);
-        
-        
-        List <Product> list = dao.pagingpro(index);
-        
-        request.setAttribute("listP", list);
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+//        DAO dao = new DAO();
+//        String indexPage = request.getParameter("index");
+//        if (indexPage == null) {
+//            indexPage = "1";
+//        }
+//        int index = Integer.parseInt(indexPage);
+//        int count = dao.totalpro();
+//        int endpage = count / 6;
+//        if (count % 6 != 0) {
+//            endpage++;
+//            System.out.println(count);
+//        }       
+//        List <Product> lista = dao.pagingpro(index);
+//        
+//        request.setAttribute("listP", lista);
+//        request.getRequestDispatcher("Home.jsp").forward(request, response);
         
         
         

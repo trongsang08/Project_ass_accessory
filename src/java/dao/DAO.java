@@ -38,7 +38,8 @@ public class DAO {
                         rs.getString(3),
                         rs.getDouble(4),
                         rs.getString(5),
-                        rs.getString(6)));
+                        rs.getString(6)
+                        ));
             }
         } catch (Exception e) {
         }
@@ -149,7 +150,8 @@ public class DAO {
                         rs.getString(3),
                         rs.getDouble(4),
                         rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(6),
+                        rs.getString(9));
             }
         } catch (Exception e) {
         }
@@ -171,7 +173,7 @@ public class DAO {
                         rs.getString(3),
                         rs.getDouble(4),
                         rs.getString(5),
-                        rs.getString(6)));
+                        rs.getString(6),rs.getString(9)));
             }
         } catch (Exception e) {
         }
@@ -249,11 +251,11 @@ public class DAO {
         }
     }
 
-    public void insertpro(String name, String image, String price,
-            String title, String description, String category, int sid) {
-        String query = "INSERT [dbo].[product] ( [name], [image], [price], [title], [description], [cateID], [sell_ID]) \n"
-                + "VALUES (?,?,?,?,?,?,?)";
-
+    public void insertProduct(String name, String image, String price,
+            String title, String description, String category, int sid,String suplier) {
+        String query = "INSERT [dbo].[product] \n"
+                + "([name], [image], [price], [title], [description], [cateID], [sell_ID],suplier)\n"
+                + "VALUES(?,?,?,?,?,?,?,?)";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
@@ -264,22 +266,23 @@ public class DAO {
             ps.setString(5, description);
             ps.setString(6, category);
             ps.setInt(7, sid);
+            ps.setString(8, suplier);
             ps.executeUpdate();
-
         } catch (Exception e) {
         }
     }
 
     public void eidtpro(String name, String image, String price,
-            String title, String description, String category, String pid) {
-        String query = "update product\n"
-                + "set [name] = ?,\n"
-                + "[image] = ?,\n"
-                + " [price] =?,\n"
-                + "[title] = ?,\n"
-                + " [description] = ?,\n"
-                + "  [cateID] = ?\n"
-                + "  where id = ?";
+            String title, String description, String category,String suplier, String pid) {
+        String query = "update product\n" +
+"                set [name] = ?,\n" +
+"                [image] = ?,\n" +
+"               [price] =?,\n" +
+"               [title] = ?,\n" +
+"                [description] = ?,\n" +
+"                [cateID] = ?,\n" +
+"               suplier = ?\n" +
+"                  where id = ?";
 
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -290,7 +293,9 @@ public class DAO {
             ps.setString(4, title);
             ps.setString(5, description);
             ps.setString(6, category);
-            ps.setString(7, pid);
+            ps.setString(7, suplier);
+            ps.setString(8, pid);
+            
             ps.executeUpdate();
 
         } catch (Exception e) {
@@ -356,22 +361,61 @@ public class DAO {
         return list;
 
     }
+    
+        public List<Product> pagingmanager(int idex) {
+        List<Product> list = new ArrayList<>();
+        String query = "select [id], [name], [image], [price], [title], [description], [cateID], [sell_ID], suplier  from (select ROW_NUMBER() over (order by sell_ID) as rownum , [id], [name], [image], [price], [title], [description], [cateID], [sell_ID], suplier  from product) t\n"
+                + "where rownum >= ? and rownum <= ?;";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, (idex - 1)* 4 + 1 );
+            ps.setInt(2, idex * 4);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getString(6), rs.getString(9)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+
+    }
+        
+    public int totalprosellid() { // hàm đếm sô lượng tất cả sản phẩm có trong db
+        String query = "select COUNT(*) from product\n"
+                + "where sell_ID = 1;";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         DAO dao = new DAO();
 //        List<Product> list = dao.getAllProduct();
 //        List<Category> listp = dao.getAllCategory();
-//
-//        for (Category o : listp) {
+////
+//        for (Product o : list) {
 //            System.out.println(o);
 //        }
 
-//        int count = dao.totalpro();
+//        int count = dao.totalprosellid();
 //        System.out.println(count);
-         List<Product> list = dao.pagingpro(3);
-         for (Product o : list) {
-            System.out.println(o);
-        }
+//         List<Product> list = dao.pagingmanager(1);
+//         for (Product o : list) {
+//            System.out.println(o);
+//        }
 
     }
 
